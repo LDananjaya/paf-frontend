@@ -6,18 +6,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>HealthCare</title>
+<title>Health Care</title>
 <link rel="stylesheet" href="Views/bootstrap.min.css">
 <script src="Components/jquery-3.2.1.min.js"></script>
-<script src="Components/patient.js" ></script>
+<script src="Components/Patient.js" ></script>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col-6">
 			
-				<h1>Patient login</h1>
-						<form id="formPatient" name="formPatient" method="post" action="Patient.jsp">
+				<h1>Patient Management</h1>
+						<form id="formPatient" name="formPatient">
 			 				
 							first name:
 							<input id="f_Name" name="f_Name" type="text"
@@ -44,15 +44,14 @@
 						    <input id="NIC" name="NIC" type="text"
 										class="form-control form-control-sm">
 							<br>
-							<input id="btnSave" name="btnSave" type="button" value="Save"
-										class="btn btn-primary">
+							<input id="btnSave" name="btnSave" type="button" value="Save"class="btn btn-primary">
 							<input type="hidden" id="hidPatientIDSave"name="hidPatientIDSave" value="">
 					</form>
 					<div id="alertSuccess" class="alert alert-success"></div>
 					<div id="alertError" class="alert alert-danger"></div>	
 				
 					<br>
-					<div id="divItemsGrid">
+					<div id="divPatientGrid">
 					<%
 						Patient patientObj = new Patient();
 						out.print(patientObj.ViewPatient());

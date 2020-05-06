@@ -29,7 +29,7 @@ public class Patient {
 		return con;
 	}
 	
-	public String addPatient(String f_name, String l_name, String address, String dob, int phoneNo, String gender, String BloodGroup, String NIC)
+	public String addPatient(String f_name, String l_name, String address, String dob, String phoneNo, String gender, String BloodGroup, String NIC)
 	{
 			String output = "";
 			
@@ -41,28 +41,30 @@ public class Patient {
 				{return "Error while connecting to the database for inserting."; }
 	
 				// create a prepared statement
-				String sql = "INSERT INTO patient(f_name, l_name, address,dob,phoneNo,gender,BloodGroup,NIC) "+ "VALUE(?,?,?,?,?,?,?,?)";
+				String sql = "INSERT INTO patient(f_name, l_name, address, dob, phoneNo, gender, BloodGroup, NIC) "+ "VALUE(?,?,?,?,?,?,?,?)";
 	 
 				PreparedStatement preparedStmt = con.prepareStatement(sql);
 	 
 				// binding values
-				preparedStmt.setString(1, f_name);
-				preparedStmt.setString(2, l_name);
-				preparedStmt.setString(3, address);
-				preparedStmt.setString(4, dob);
-				preparedStmt.setInt(5, phoneNo); 
-				preparedStmt.setString(6, gender);
-				preparedStmt.setString(7, BloodGroup);
-				preparedStmt.setString(8, NIC);
+				preparedStmt.setInt(1, 0);
+				preparedStmt.setString(2, f_name);
+				preparedStmt.setString(3, l_name);
+				preparedStmt.setString(4, address);
+				preparedStmt.setString(5, dob);
+				preparedStmt.setInt(6, Integer.parseInt(phoneNo)); 
+				preparedStmt.setString(7, gender);
+				preparedStmt.setString(8, BloodGroup);
+				preparedStmt.setString(9, NIC);
+				
 				preparedStmt.execute();
 				con.close();
 				
 				String newPatient = ViewPatient(); 
-				output = "Inserted successfully";
+				output = "{\"status\":\"success\", \"data\": \"" +newPatient + "\"}"; 
 			}
 			 catch (Exception e)
 			 {
-				 	output = "Error while inserting the Patient.";
+				 	output = "{\"status\":\"error\", \"data\":\"Error while inserting the Patient.\"}";
 				 	System.err.println(e.getMessage());
 			 }
 			
@@ -83,7 +85,7 @@ public class Patient {
 			 return "Error while connecting to the database for reading.";
 		 }
 		 // Prepare the html table to be displayed
-		 output = "<table border='1'><tr><th>ID</th><th>First Name</th><th>Last Name</th><th>Address</th><th>date of birth</th><th>contact</th><th>Gender</th><th>Blood Group</th><th>NIC</th><th>Update</th><th>Remove</th></tr>";
+		 output = "<table border='1'><tr><th>First Name</th><th>Last Name</th><th>Address</th><th>date of birth</th><th>contact</th><th>Gender</th><th>Blood Group</th><th>NIC</th><th>Update</th><th>Remove</th></tr>";
 		 
 		 String sql = "select * from patient";
 		 Statement stmt = con.createStatement();
@@ -113,7 +115,7 @@ public class Patient {
 	    	output += "<td>" + NIC + "</td>";
 	
 	    	// buttons
-	    	output +=  "<td><input name='btnUpdate' type='button'value='Update'class='btnUpdate btn btn-secondary'></td><td><input name='btnRemove' type='button'value='Remove'class='btnRemove btn btn-danger' data-patientid='"+ id + "'>" + "</td></tr>"; 
+	    	output +=  "<td><input name='btnUpdate' type='button'value='Update'class='btnUpdate btn btn-secondary'></td>"+"<td><input name='btnRemove' type='button' value='Remove'class='btnRemove btn btn-danger' data-id='"+ id + "'>" + "</td></tr>"; 
 	    			
 	    }
 	    
@@ -129,7 +131,7 @@ public class Patient {
 	return output; 
 	}
 
-	public String UpdatePatient(String f_name, String l_name, String address, String dob, int phoneNo, String gender, String BloodGroup, String NIC, int id)
+	public String UpdatePatient(String id,String f_name, String l_name, String address, String dob, String phoneNo, String gender, String BloodGroup, String NIC)
 	 {
 					String output = "";
 			
@@ -150,28 +152,29 @@ public class Patient {
 							preparedStmt.setString(2, l_name);
 							preparedStmt.setString(3, address);
 							preparedStmt.setString(4, dob);
-							preparedStmt.setInt(5, phoneNo); 
-							preparedStmt.setString(4, gender);
-							preparedStmt.setString(4, BloodGroup);
-							preparedStmt.setString(4, NIC);
-							preparedStmt.setInt(5, id);
+							preparedStmt.setInt(5, Integer.parseInt (phoneNo)); 
+							preparedStmt.setString(6, gender);
+							preparedStmt.setString(7, BloodGroup);
+							preparedStmt.setString(8, NIC);
+							preparedStmt.setInt(9, Integer.parseInt(id));
 			 
 							// execute the statement
 							preparedStmt.execute();
 							con.close();
-			 
-							output = "Updated successfully";
+							
+							String newPatient = ViewPatient();
+							output =  "{\"status\":\"success\", \"data\": \"" +newPatient + "\"}"; 
 			 }
 			 catch (Exception e)
 			 {
-				 		output = "Error while updating the Patient.";
+				 		output = "{\"status\":\"error\", \"data\":\"Error while updating the Patient.\"}";
 				 		System.err.println(e.getMessage());
 			 }
 					
 			 return output;
 }
 
-	public String deleteItem(int id)
+	public String deletePatient(String id)
 	{
 			String output = "";
 	 
@@ -188,17 +191,18 @@ public class Patient {
 					PreparedStatement preparedStmt = con.prepareStatement(sql);
 	
 					// binding values
-					preparedStmt.setInt(1, id);
+					preparedStmt.setInt(1, Integer.parseInt(id));
 	 
 					// execute the statement
 					preparedStmt.execute();
 					con.close();
 	 
-					output = "Deleted successfully";
+					String newPatient = ViewPatient();
+					output =  "{\"status\":\"success\", \"data\": \"" +newPatient + "\"}"; 
 	 }
 	 catch (Exception e)
 	 {
-		 		output = "Error while deleting the Patient.";
+		 		output =  "{\"status\":\"error\", \"data\":\"Error while deleting the Patient.\"}";
 		 		System.err.println(e.getMessage());
 	 }
 	 return output;
