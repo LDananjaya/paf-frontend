@@ -14,7 +14,7 @@ public class Patient {
 			Connection con = null;
 			try {
 				
-				Class.forName("com.mysql.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver");
 				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/helthcare","root","root");
 				
 			} catch (ClassNotFoundException e) {
@@ -41,20 +41,20 @@ public class Patient {
 				{return "Error while connecting to the database for inserting."; }
 	
 				// create a prepared statement
-				String sql = "INSERT INTO patient('f_name', 'l_name', 'address', 'dob', 'phoneNo', 'gender', 'BloodGroup', 'NIC') "+ "VALUE(?,?,?,?,?,?,?,?)";
+				String sql = "INSERT INTO patient(f_name, l_name, address, dob, phoneNo, gender, BloodGroup, NIC) "+ "VALUE(?,?,?,?,?,?,?,?)";
 	 
 				PreparedStatement preparedStmt = con.prepareStatement(sql);
 	 
 				// binding values
-				preparedStmt.setInt(1, 0);
-				preparedStmt.setString(2, f_name);
-				preparedStmt.setString(3, l_name);
-				preparedStmt.setString(4, address);
-				preparedStmt.setString(5, dob);
-				preparedStmt.setInt(6, Integer.parseInt(phoneNo)); 
-				preparedStmt.setString(7, gender);
-				preparedStmt.setString(8, BloodGroup);
-				preparedStmt.setString(9, NIC);
+				
+				preparedStmt.setString(1, f_name);
+				preparedStmt.setString(2, l_name);
+				preparedStmt.setString(3, address);
+				preparedStmt.setString(4, dob);
+				preparedStmt.setString(5, phoneNo); 
+				preparedStmt.setString(6, gender);
+				preparedStmt.setString(7, BloodGroup);
+				preparedStmt.setString(8, NIC);
 				
 				preparedStmt.execute();
 				con.close();
@@ -99,7 +99,7 @@ public class Patient {
 	    	String l_name = rs.getString("l_name");
 	    	String address = rs.getString("address");
 	    	String dob = rs.getString("dob");
-	    	String phoneNo = Integer.toString(rs.getInt("phoneNo"));
+	    	String phoneNo = rs.getString("phoneNo");
 	    	String gender = rs.getString("gender");
 	    	String BloodGroup = rs.getString("BloodGroup");
 	    	String NIC = rs.getString("NIC");
@@ -152,7 +152,7 @@ public class Patient {
 							preparedStmt.setString(2, l_name);
 							preparedStmt.setString(3, address);
 							preparedStmt.setString(4, dob);
-							preparedStmt.setInt(5, Integer.parseInt (phoneNo)); 
+							preparedStmt.setString(5, phoneNo); 
 							preparedStmt.setString(6, gender);
 							preparedStmt.setString(7, BloodGroup);
 							preparedStmt.setString(8, NIC);

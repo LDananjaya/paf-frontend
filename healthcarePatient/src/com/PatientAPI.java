@@ -33,7 +33,7 @@ public class PatientAPI extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class PatientAPI extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		String output = patientObj.addPatient(request.getParameter("f_Name"),request.getParameter("l_Name"),request.getParameter("address"),request.getParameter("dob"), request.getParameter("phoneNo"),request.getParameter("gender"),request.getParameter("BloodGroup"),request.getParameter("NIC"));response.getWriter().write(output); 
+		String output = patientObj.addPatient(request.getParameter("f_Name"),request.getParameter("l_name"),request.getParameter("address"),request.getParameter("dob"), request.getParameter("phoneNo"),request.getParameter("gender"),request.getParameter("BloodGroup"),request.getParameter("NIC"));response.getWriter().write(output); 
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class PatientAPI extends HttpServlet {
 		
 		Map paras = getParasMap(request);
 		
-		 String output = patientObj.UpdatePatient(paras.get("hidPatientIDSave").toString(),paras.get("f_Name").toString(),paras.get("l_Name").toString(),paras.get("address").toString(),paras.get("dob").toString(),paras.get("phoneNo").toString(),paras.get("gender").toString(),paras.get("BloodGroup").toString(),paras.get("NIC").toString());
+		 String output = patientObj.UpdatePatient(paras.get("hidPatientIDSave").toString(),paras.get("f_Name").toString(),paras.get("l_name").toString(),paras.get("address").toString(),paras.get("dob").toString(),paras.get("phoneNo").toString(),paras.get("gender").toString(),paras.get("BloodGroup").toString(),paras.get("NIC").toString());
 		response.getWriter().write(output); 
 	}
 

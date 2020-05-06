@@ -77,16 +77,13 @@ function onPatientSaveComplete(response, status)
 
 function validatePatientForm()
 {
-	// f_name
 	if ($("#f_Name").val().trim() == ""){
-		return "Insert first name.";
-		
+		return "Insert first Name.";	
 	}
 	
 	// l_name
-	if ($("#l_Name").val().trim() == ""){
-		return "Insert last Name.";
-		
+	if ($("#l_name").val().trim() == ""){
+		return "Insert last Name.";	
 	}
 	
 	// address-------------------------------
@@ -132,7 +129,7 @@ $(document).on("click", ".btnUpdate", function(event)
 		{
 			$("#hidPatientIDSave").val($(this).closest("tr").find('#hidPatientIDUpdate').val());
 			$("#f_Name").val($(this).closest("tr").find('td:eq(0)').text());
-			$("#l_Name").val($(this).closest("tr").find('td:eq(1)').text());
+			$("#l_name").val($(this).closest("tr").find('td:eq(1)').text());
 			$("#address").val($(this).closest("tr").find('td:eq(2)').text());
 			$("#dob").val($(this).closest("tr").find('td:eq(3)').text()); 
 			$("#phoneNo").val($(this).closest("tr").find('td:eq(4)').text()); 
