@@ -1,10 +1,12 @@
 $(document).ready(function()
 	{
 		
-		$("#alertSuccess").hide();
-		$("#alertError").hide();
+		$("#alertSuccess").hide();     
+		$("#alertError").hide();  
+		
 	});
 
+//save----------
 $(document).on("click", "#btnSave", function(event)
 	{
 		$("#alertSuccess").text("");
@@ -14,13 +16,15 @@ $(document).on("click", "#btnSave", function(event)
 	
 		var status = validatePatientForm();
 		
+		//if not valid
 		if (status != true)
-		 {
+		{
 			$("#alertError").text(status);
 			$("#alertError").show();
 			return;
-		 }
+		}
 	
+		//if valid
 		var type = ($("#hidPatientIDSave").val() == "") ? "POST" : "PUT";
 		
 		$.ajax(
@@ -56,14 +60,15 @@ function onPatientSaveComplete(response, status)
 					$("#alertError").show();
 				}
 				
-		} else if (status == "error")
-		{
+		} else if (status == "error"){
+			
 				$("#alertError").text("Error while saving.");
 				$("#alertError").show();
-			} else
-			{
-				$("#alertError").text("Unknown error while saving..");
-				$("#alertError").show();
+			
+		} else{
+		
+			$("#alertError").text("Unknown error while saving..");
+			$("#alertError").show();
 			}
 				
 			$("#hidPatientIDSave").val("");
@@ -73,51 +78,51 @@ function onPatientSaveComplete(response, status)
 function validatePatientForm()
 {
 	// f_name
-	if ($("#f_Name").val().trim() == "")
-	{
+	if ($("#f_Name").val().trim() == ""){
 		return "Insert first name.";
+		
 	}
 	
 	// l_name
-	if ($("#l_Name").val().trim() == "")
-	{
+	if ($("#l_Name").val().trim() == ""){
 		return "Insert last Name.";
+		
 	}
 	
 	// address-------------------------------
-	if ($("#address").val().trim() == "")
-	{
+	if ($("#address").val().trim() == ""){
 		return "Insert Address.";
+		
 	}
 	
 	// date of birth------------------------
-	if ($("#dob").val().trim() == "")
-	{
+	if ($("#dob").val().trim() == ""){
+		
 		return "Insert date of birth.";
 	}
 	
 	// phoneNo-------------------------------
-	if ($("#phoneNo").val().trim() == "")
-	{
+	if ($("#phoneNo").val().trim() == ""){
 		return "Insert phoneNo.";
+		
 	}
 
 	// gender-------------------------------
-	if ($("#gender").val().trim() == "")
-	{
+	if ($("#gender").val().trim() == ""){
 		return "Insert gender.";
+		
 	}
 	
 	// BloodGroup-------------------------------
-	if ($("#BloodGroup").val().trim() == "")
-	{
+	if ($("#BloodGroup").val().trim() == ""){
 		return "Insert Blood Group.";
+		
 	}
 	
 	// NIC-------------------------------
-	if ($("#NIC").val().trim() == "")
-	{
+	if ($("#NIC").val().trim() == ""){
 		return "Insert NIC.";
+		
 	}
 	
 	return true;

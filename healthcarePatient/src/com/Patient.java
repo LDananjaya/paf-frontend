@@ -41,7 +41,7 @@ public class Patient {
 				{return "Error while connecting to the database for inserting."; }
 	
 				// create a prepared statement
-				String sql = "INSERT INTO patient(f_name, l_name, address, dob, phoneNo, gender, BloodGroup, NIC) "+ "VALUE(?,?,?,?,?,?,?,?)";
+				String sql = "INSERT INTO patient('f_name', 'l_name', 'address', 'dob', 'phoneNo', 'gender', 'BloodGroup', 'NIC') "+ "VALUE(?,?,?,?,?,?,?,?)";
 	 
 				PreparedStatement preparedStmt = con.prepareStatement(sql);
 	 
@@ -143,7 +143,7 @@ public class Patient {
 							{return "Error while connecting to the database for updating."; }
 			
 							// create a prepared statement
-							String sql = "UPDATE  patient SET " + "f_name = ?," + "l_name = ?,"+ "address = ?," + "dob = ?,"+ "phoneNo = ?," + "gender = ?," + "BloodGroup = ?," + "NIC = ?" + "WHERE id = ?";
+							String sql = "UPDATE  patient SET f_name = ?, l_name = ?, address = ?, dob = ?, phoneNo = ?, gender = ?, BloodGroup = ?, NIC = ? WHERE id = ?";
 			
 							PreparedStatement preparedStmt = con.prepareStatement(sql);
 			 
