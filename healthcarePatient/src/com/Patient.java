@@ -85,7 +85,7 @@ public class Patient {
 			 return "Error while connecting to the database for reading.";
 		 }
 		 // Prepare the html table to be displayed
-		 output = "<table border='1'><tr><th>First Name</th><th>Last Name</th><th>Address</th><th>date of birth</th><th>contact</th><th>Gender</th><th>Blood Group</th><th>NIC</th><th>Update</th><th>Remove</th></tr>";
+		 output = "<table border='1' class='table table-hover'><tr><th>First Name</th><th>Last Name</th><th>Address</th><th>date of birth</th><th>contact</th><th>Gender</th><th>Blood Group</th><th>NIC</th><th>Update</th><th>Remove</th></tr>";
 		 
 		 String sql = "select * from patient";
 		 Statement stmt = con.createStatement();
