@@ -105,6 +105,12 @@ function validatePatientForm()
 		return "Insert phoneNo.";
 		
 	}
+	//check numerical
+	var tmpNO = $("#phoneNo").val().trim();
+	if (!$.isNumeric(tmpNO))
+	{
+		return "Insert a numerical value for phone number.";
+	} 
 
 	// gender-------------------------------
 	if ($("#gender").val().trim() == ""){
