@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `helthcare` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `helthcare`;
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
 -- Host: localhost    Database: helthcare
@@ -30,12 +28,12 @@ CREATE TABLE `patient` (
   `l_name` varchar(45) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
   `dob` varchar(45) DEFAULT NULL,
-  `phoneNo` int(11) DEFAULT NULL,
+  `phoneNo` varchar(10) DEFAULT NULL,
   `gender` varchar(45) DEFAULT NULL,
   `BloodGroup` varchar(45) DEFAULT NULL,
   `NIC` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +42,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (1,'lahiru','sanka','colombo','1994-02-19',713616365,'male','A+','940193290V'),(3,'kumaraaa','sanka','colombo','1994-02-19',713616365,'male','A+','940193290V'),(4,'kumara','sanka','colombo','1994-02-19',713616365,'male','A+','940193290V');
+INSERT INTO `patient` VALUES (4,'kumara','sanka','colombo','1994-02-19','713616365','male','A+','940193290V');
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-16 10:06:32
+-- Dump completed on 2020-05-06 17:43:41

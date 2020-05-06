@@ -1,8 +1,10 @@
 $(document).ready(function()
 	{
 		
-		$("#alertSuccess").hide();     
-		$("#alertError").hide();  
+	if ($("#alertSuccess").text().trim() == "") {
+		$("#alertSuccess").hide();
+	}
+	$("#alertError").hide();
 		
 	});
 
